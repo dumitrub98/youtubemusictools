@@ -38,24 +38,45 @@ pip install ytmusicapi
 
 ## 2. Authentication Setup
 
-To allow the script to interact with your YouTube Music account, you need to provide your session cookies:
+To allow the script to interact with your YouTube Music account, you need to provide your session cookies manually:
 
-### Step 1: Install the "Get Cookies.txt" extension
-Download and install the browser extension to export cookies:
-- **Chrome/Edge:** [Get Cookies.txt](https://chrome.google.com/webstore/detail/get-cookiestxt/lejokpkpbgmmfoijfcakcmcdfhpkncjg)
-- **Firefox:** [Get Cookies.txt](https://addons.mozilla.org/en-US/firefox/addon/cookies-txt/)
-
-### Step 2: Export cookies
-1. Open [https://music.youtube.com](https://music.youtube.com) in your browser.
+### Step 1: Open YouTube Music
+1. Open [https://music.youtube.com](https://music.youtube.com) in Firefox (or any other browser which allows to export headers in raw format).
 2. Log in to your YouTube Music account.
-3. Click on the extension icon and export the cookies as `cookies.txt`.
 
-### Step 3: Convert cookies to authentication JSON
-Run the following command to convert the `cookies.txt` to `browser.json`:
+### Step 2: Open Developer Tools
+1. Press **F12** or **Ctrl+Shift+I** (Windows/Linux) or **Cmd+Opt+I** (macOS) to open Developer Tools.
+2. Navigate to the **Network** tab.
+
+### Step 3: Capture a Request
+1. Refresh the page by pressing **F5**.
+2. Look for a request named **browse** or **search** in the list.
+3. Click on the request and select the **Headers** tab.
+
+### Step 4: Copy Request Headers
+1. Scroll to the section **Request Headers**.
+2. Copy the full headers, including the `User-Agent`, `Cookie`, and other necessary fields in raw format.
+
+### Step 5: Create `headers.txt`
+1. Create a file named `headers.txt` in your project folder.
+2. Paste the copied request headers in the following format:
+   ```raw
+    POST /youtubei/v1/browse?prettyPrint=false HTTP/3
+    Host: music.youtube.com
+    User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:134.0) Gecko/20100101 Firefox/134.0
+    Accept: */*
+    Accept-Language: en-US,en;q=0.5
+    Accept-Encoding: gzip, deflate, br, zstd
+    Content-Type: application/json
+    Content-Length: 3228
+    .....
+   ```
+
+
+### Step 6: Set current session for `ytmusicapi`
 ```bash
-ytmusicapi browser
+ytmusicapi browser < headers.txt
 ```
-Paste the contents of the `cookies.txt` into the terminal when prompted, then press `Ctrl+D` to finish.
 
 ---
 
@@ -74,6 +95,18 @@ python3 randomiser.py <playlist_id> <limit>
 ### Example:
 ```bash
 python3 randomiser.py "SD110d2d2-djh181d19d81h2d2" 1000
+```
+
+#### Output: 
+```bash
+Randomizing playlist 'My Songs' with 641 tracks.
+Removing all tracks from the playlist in batches...
+Removing batch 1/4 with 200 tracks...
+Removing batch 2/4 with 200 tracks...
+Removing batch 3/4 with 200 tracks...
+Removing batch 4/4 with 41 tracks...
+Adding shuffled tracks to the playlist...
+Playlist 'My Songs' has been updated with a randomized order!
 ```
 
 ---
