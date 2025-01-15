@@ -92,14 +92,14 @@ This script allows you to randomize the order of tracks in a YouTube Music playl
 
 
 ```bash
-python3 randomiser.py <playlist_id> <limit>
+python3 randomizer.py <playlist_id> <limit>
 ```
 - `<playlist_id>`: The ID of the YouTube Music playlist (found in the playlist URL).
 - `<limit>`: The maximum number of tracks to process (optional, default is `2000`).
 
 ### Example:
 ```bash
-python3 randomiser.py "SD110d2d2-djh181d19d81h2d2" 1000
+python3 randomizer.py "SD110d2d2-djh181d19d81h2d2" 1000
 ```
 
 #### Output: 
