@@ -18,29 +18,24 @@ Before you start, make sure you have:
 
 ---
 
-### Installation Steps
+## Installation Steps
 
-#### Step 1: Clone the repository
+### Step 1: Clone the repository
 ```bash
 git clone https://github.com/dumitrub98/youtubemusictools.git
 cd youtubemusictools
 ```
 
-#### Step 2: Create a virtual environment (optional but recommended)
+### Step 2: Create a virtual environment (optional but recommended)
 ```bash
 python3 -m venv venv
 source venv/bin/activate
-```
-
-#### Step 3: Install dependencies
-Install the python libraries:
-```bash
 pip install ytmusicapi spotipy
 ```
 
 ---
 
-## YouTube MusicAuthentication Setup
+## YouTube Music Authentication Setup
 
 To allow the script to interact with your YouTube Music account, you need to provide your session cookies manually:
 
@@ -76,7 +71,6 @@ To allow the script to interact with your YouTube Music account, you need to pro
     .....
    ```
 
-
 ### Step 6: Set current session for `ytmusicapi`
 ```bash
 ytmusicapi browser < headers.txt
@@ -84,11 +78,13 @@ ytmusicapi browser < headers.txt
 
 ---
 
-## 1. Randomizer Script
+## Scripts
+
+### 1. Randomizer Script
 
 This script allows you to randomize the order of tracks in a YouTube Music playlist by removing all tracks and adding them back in a randomized order. It also removes duplicate tracks based on the name and artist.
 
-### How to Run the Script
+#### How to Run the Script
 
 
 ```bash
@@ -97,7 +93,7 @@ python3 randomizer.py <playlist_id> <limit>
 - `<playlist_id>`: The ID of the YouTube Music playlist (found in the playlist URL).
 - `<limit>`: The maximum number of tracks to process (optional, default is `2000`).
 
-### Example:
+#### Example:
 ```bash
 python3 randomizer.py "SD110d2d2-djh181d19d81h2d2" 1000
 ```
@@ -116,11 +112,11 @@ Playlist 'My Songs' has been updated with a randomized order!
 
 ---
 
-## 2. Importer Script
+### 2. Importer Script
 
 The importer script transfers playlists from Spotify to YouTube Music and removes duplicates while displaying the final sorted list.
 
-### How to Run the Script
+#### How to Run the Script
 
 1. Make sure your Spotify API credentials (`SPOTIFY_CLIENT_ID`, `SPOTIFY_CLIENT_SECRET`, `SPOTIFY_REDIRECT_URI`) are set as environment variables.
   ```bash
@@ -136,7 +132,7 @@ The importer script transfers playlists from Spotify to YouTube Music and remove
    - `<spotify_playlist_url>`: The URL of the Spotify playlist you want to transfer.
    - `[youtube_music_playlist_id]`: (Optional) The ID of an existing YouTube Music playlist to which tracks will be added.
 
-### Example Output
+#### Example Output
 ```bash
 Adding 1205 tracks to YouTube Music playlist...
 Added 1 of 1205: Through the Fire and Flames - DragonForce
@@ -178,4 +174,3 @@ Feel free to submit issues or contribute improvements to this project.
 ## Acknowledgements
 - Special thanks to the [ytmusicapi](https://github.com/sigma67/ytmusicapi) project for providing an excellent API for interacting with YouTube Music.
 - Special thanks to the [spotipy](https://github.com/spotipy-dev/spotipy) project for providing an excellent API for interacting with Spotify.
-
